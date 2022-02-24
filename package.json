@@ -1,11 +1,77 @@
 {
-  "name": "sparrows",
+  "name": "sparrows-next",
   "version": "0.0.1-beta.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "reinstall": "rm -rf node_modules && rm -rf yarn.lock && rm -rf .next && yarn install",
+    "dev": "yarn dep && nodemon",
+    "dev:redis": "DEBUG=ioredis:* nodemon",
+    "next": "next",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "build": " NODE_ENV=production next build",
+    "build:lib": "rm -rf ./dist && tsc --project tsconfig.build.json",
+    "dep": "sh ./dep/redis.sh && sh ./dep/jaeger.sh",
+    "release": "standard-version",
+    "release:beta": "standard-version --prerelease beta",
+    "release:alpha": "standard-version --prerelease alpha",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "bin": {
+    "sparrows": "./bin/sparrows"
   },
   "author": "vocoWone",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.0",
+    "@types/ioredis": "^4.28.7",
+    "@types/jaeger-client": "^3.18.3",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.5",
+    "@types/koa-generic-session": "^2.2.1",
+    "@types/koa-redis": "^4.0.2",
+    "@types/koa-router": "^7.4.4",
+    "@types/node": "^16.11.13",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "cross-env": "^7.0.3",
+    "next": "^12.0.7",
+    "next-compose-plugins": "^2.2.1",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "reaux-next": "0.0.4-beta.1",
+    "sass": "^1.49.0",
+    "standard-version": "^9.3.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "chalk": "^4.1.2",
+    "crypto-js": "^4.1.1",
+    "csrf": "^3.1.0",
+    "http-proxy-middleware": "^2.0.3",
+    "ioredis": "^4.28.2",
+    "jaeger-client": "^3.19.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-compose": "^4.1.0",
+    "koa-connect": "^2.1.0",
+    "koa-generic-session": "^2.2.0",
+    "koa-redis": "^4.0.1",
+    "koa-router": "^10.1.1",
+    "opentracing": "^0.14.7",
+    "path-to-regexp": "^6.2.0",
+    "portfinder": "^1.0.28",
+    "tslib": "^2.3.1"
+  }
 }
