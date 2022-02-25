@@ -3,7 +3,7 @@ import {NextServer, RequestHandler} from 'next/dist/server/next'
 import compose from 'koa-compose';
 import Router from "koa-router";
 
-export function getConfig() {
+export async function getConfig() {
   const configPath = process.cwd() + "/koa.config.js";
   const config = require(configPath);
   return config;
@@ -21,7 +21,7 @@ const context = (app: NextServer, handle: RequestHandler, router: Router, option
   ctx: ParameterizedContext<CTXState, DefaultContext>,
   next: Next
 ) => {
-  const config = getConfig();
+  const config = await getConfig();
   ctx.res.statusCode = 200;
   ctx.state = { app, handle, router, options, config}
 
