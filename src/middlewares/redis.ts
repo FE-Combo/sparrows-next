@@ -22,7 +22,6 @@ let redis: Redis.Redis | null = null
 
 export const middleware = (options: Options) => async ( ctx: ParameterizedContext<DefaultState, RedisCTX>, next: Next) => {
     const {redisOptions, sessionOptions} = options;
-    ctx.keys = ["key", "keykeys"]
     if(!redis) {
         redis = new Redis(redisOptions);
     }
@@ -33,14 +32,13 @@ export const middleware = (options: Options) => async ( ctx: ParameterizedContex
     })(ctx, next);
 }
 
-export const saveSession = async (value: any, ctx: ParameterizedContext<DefaultState, RedisCTX>) => {
+export const saveSession = async (value: any, ctx: ParameterizedContext<DefaultState, RedisCTX>, key: string = "payload") => {
     try {    
-        ctx.sessionId = "sid";
-        ctx.session!.auth = value;
+        ctx.session![key] = value;
         if(ctx?.saveSession) await ctx.saveSession();
         return ctx.sessionId;
     } catch (error) {
-        console.error(error)   
+        console.error(error);
     }
 }
 
@@ -52,6 +50,7 @@ export const removeSession = async (ctx: ParameterizedContext<DefaultState, Redi
         if(key) {
             ctx.session = null;
             await redis.redis.del(key)
+            ctx.cookies.set(sidKey, null, { expires: new Date(0) })
         }
     } catch (error) {
         console.error(error)   

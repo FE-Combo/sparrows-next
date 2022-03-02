@@ -166,6 +166,11 @@
   resolved "https://registry.npmjs.org/@types/content-disposition/-/content-disposition-0.5.4.tgz#de48cf01c79c9f1560bcfd8ae43217ab028657f8"
   integrity sha512-0mPF08jn9zYI0n0Q/Pnz7C4kThdSt+6LD4amsrYDDpgBfrVWa3TcCOxKX1zkGgYniGagRv8heN2cbh+CAn+uuQ==
 
+"@types/cookie-signature@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@types/cookie-signature/-/cookie-signature-1.0.4.tgz#164cc7208f35fc379195a9d09431801677fc4559"
+  integrity sha512-B9LOCjVnLniz5NHq8pPFQdDjRGtLZKYG7tQHveMeUalWvZgOuLQ5OeWgx3y4/WLJFt0N+tYyk8HMEOsvCjf7Yw==
+
 "@types/cookies@*":
   version "0.7.7"
   resolved "https://registry.npmjs.org/@types/cookies/-/cookies-0.7.7.tgz#7a92453d1d16389c05a5301eef566f34946cfd81"
@@ -397,6 +402,11 @@
   dependencies:
     "@types/mime" "^1"
     "@types/node" "*"
+
+"@types/uuid@^8.3.4":
+  version "8.3.4"
+  resolved "https://registry.npmjs.org/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 JSONStream@^1.0.4:
   version "1.3.5"
@@ -946,6 +956,11 @@ conventional-recommended-bump@6.1.0:
     git-semver-tags "^4.1.1"
     meow "^8.0.0"
     q "^1.5.1"
+
+cookie-signature@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.2.0.tgz#4deed303f5f095e7a02c979e3fcb19157f5eaeea"
+  integrity sha512-R0BOPfLGTitaKhgKROKZQN6iyq2iDQcH1DOF8nJoaWapguX5bC2w+Q/I9NmmM5lfcvEarnLZr+cCvmEYYSXvYA==
 
 cookies@~0.8.0:
   version "0.8.0"

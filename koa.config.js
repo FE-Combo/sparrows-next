@@ -1,9 +1,13 @@
+import signature from 'cookie-signature';
+import * as uuid from 'uuid';
 import {withDemo} from "./demo";
 
 const apiOptions = {
+    redisSecrets: '0011111111222222223333333344444444,01qqqqqqqqwwwwwwwweeeeeeeerrrrrrrr,02zzzzzzzzxxxxxxxxccccccccvvvvvvvv, 0300000100qqqqdqqqeeeseeeeyfyyyyyy',
+    cookieSecret:"afeijflwekjflkjfifffjdfjkmdd",
     whitelist: ["/api/v1.0/industry/user/verify-login"],
     saveSessionApi: ["/api/v1.0/industry/user/verify-login"],
-    removeSessionApi: [],
+    removeSessionApi: ["/api/v1.0/industry/user/verify-loginout"],
 }
 
 const csrfOptions = {
@@ -18,8 +22,8 @@ const redisOptions = {
 };
 
 const sessionOptions = {
-    prefix:"",
-    key: "s-sid",// The client stores the corresponding cookie
+    prefix:"s:koanext::",
+    key: "sid",// The client stores the corresponding cookie
     // rolling: true, // always reset the cookie and sessions
     ttl:24 * 60 * 60 * 1000, // redis survival time
     // full options: https://github.com/pillarjs/cookies#cookiesset-name--value---options--
@@ -29,6 +33,32 @@ const sessionOptions = {
         maxAge: 24 * 60 * 60 * 1000, //one day in ms
         overwrite: true,
         signed: false
+    },
+    sessionIdStore: {
+        get: function() {
+            // 获取 sessionId，seesionId在框架内会自动加上 prefix
+            // 如果希望每次请求都重新生成id，则返回undefined
+            return undefined;
+        },
+        set: function(sid, session) {
+            // 设置 cookie 以及 redis
+            // 可在此操作中清除原先的redis缓存
+            const cookieKey = this.cookies.get(sessionOptions.key, {});
+            if(cookieKey) {
+                this.sessionStore.destroy(signature.sign(cookieKey, apiOptions.cookieSecret))
+            }
+            
+            // Avoid error: Cannot set headers after they are sent to the client
+            if (!this.res.headersSent) {
+                this.cookies.set(sessionOptions.key, signature.unsign(sid.replace(/^s:koanext::$/, ""), apiOptions.cookieSecret), session.cookie)
+            }
+        },
+        reset: function() {
+            // 若 session 为空时会触发, 可用来生成最新的seesionId，seesionId在框架内会自动加上 prefix
+            const cookieId = uuid.v4();
+            this.sessionId = signature.sign(cookieId, apiOptions.cookieSecret);
+            this.cookies.set(sessionOptions.key, null, { expires: new Date(0) })
+        }
     }
 }
 
