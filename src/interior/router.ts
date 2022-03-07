@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import {ParameterizedContext} from "koa"
-import {ContextState} from "./type"
+import {ContextState} from "../type"
 import { parse } from 'url'
 
 export type RouterCTX = ParameterizedContext<ContextState, Router.IRouterParamContext<any, {}>, any>;

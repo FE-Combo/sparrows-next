@@ -7,7 +7,7 @@ import {ProxyCTX} from "../src/middlewares/proxy";
 import bodyparser from "koa-bodyparser";
 import signature from 'cookie-signature';
 import {FORMAT_HTTP_HEADERS} from 'opentracing';
-import Crypto from "./crypto"
+import Crypto from "../src/utils/crypto";
 
 export interface Options {
     redisSecrets: string;

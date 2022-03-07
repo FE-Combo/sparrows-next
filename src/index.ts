@@ -1,13 +1,14 @@
-import koa from 'koa'
-import next from 'next'
-import router from "./router";
-import context from "./context";
+import koa from 'koa';
+import next from 'next';
+import router from "./interior/router";
+import context from "./interior/context";
 import portfinder from "portfinder";
 import chalk from "chalk";
 
 const basePort = 3000;
-portfinder.basePort = basePort;
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : basePort // e.g: PORT=3000 yarn dev
+portfinder.basePort = port;
+
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
