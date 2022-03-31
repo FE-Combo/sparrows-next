@@ -20,7 +20,7 @@ app.prepare().then(() => {
   server.use(context(app, handle,router, {port, dev}))
 
   server.use(router.routes());
-
+  
   portfinder.getPort(function (error, nextPort) {
     if(error) {
       console.error(error);

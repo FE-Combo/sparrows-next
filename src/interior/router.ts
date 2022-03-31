@@ -18,10 +18,12 @@ router.get("/health", async (ctx:RouterCTX, next)=>{
 
 // 路由
 router.get('(.*)', async (ctx: RouterCTX, next) => {
-    const { req, res } = ctx
-    const parsedUrl = parse(req.url!, true)
-    await ctx.state.handle(req, res, parsedUrl)
-    ctx.respond = false
+    if(!/\/api\/.*/.test(ctx.path)) {
+        const { req, res } = ctx
+        const parsedUrl = parse(req.url!, true)
+        await ctx.state.handle(req, res, parsedUrl)
+        ctx.respond = false
+    }
     await next()
 })
 
