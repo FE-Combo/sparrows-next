@@ -1,6 +1,9 @@
 import { ParameterizedContext, Next, DefaultState, DefaultContext } from 'koa'
 import {NextServer, RequestHandler} from 'next/dist/server/next'
 import compose from 'koa-compose';
+import "@sentry/tracing";
+import * as NodeSentry from "@sentry/node";
+
 import Router from "koa-router";
 
 export async function getConfig() {
@@ -27,6 +30,21 @@ const context = (app: NextServer, handle: RequestHandler, router: Router, option
 
   if(typeof config?.assetPrefix === "string") {
     app.setAssetPrefix(config.assetPrefix)
+  }
+
+  if(typeof config?.sentry?.dsn === "string") {
+    NodeSentry.init(config.sentry);
+    ctx.onerror = (error: Error) => {
+      if(error) {
+        NodeSentry.withScope(function(scope) {
+          scope.addEventProcessor(function(event) {
+            return NodeSentry.Handlers.parseRequest(event, ctx.request);
+          });
+          NodeSentry.captureException(error);
+        });
+        console.error(error);
+      }
+    }
   }
 
   if(config?.middlewares instanceof Array) {

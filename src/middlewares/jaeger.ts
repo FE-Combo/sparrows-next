@@ -16,7 +16,7 @@ interface Options {
 
 export const middleware = (options: Options) => async ( ctx: ParameterizedContext<DefaultState, JaegerCTX>, next: Next) => {
     const {endpoint, serviceName} = options
-    const {jaeger,parentSpan, traceId} = initJaeger({serviceName, operationName:`${ctx.host}`, endpoint}, ctx)
+    const {jaeger,parentSpan, traceId} = initJaeger({serviceName, operationName:`${ctx.host}${ctx.path}`, endpoint}, ctx)
     ctx.jaeger = {
         jaeger,
         parentSpan

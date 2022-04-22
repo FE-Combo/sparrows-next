@@ -76,4 +76,9 @@ const jaegerOptions = {
 // }
 
 
-module.exports = withDemo({assetPrefix: "", apiOptions, csrfOptions, redisOptions, sessionOptions, jaegerOptions})
+const sentryOptions = {
+    dsn: "http://25243c4be3da4c19a1d66c778dfb20ea@localhost:9000/6", 
+    tracesSampleRate: 1.0 
+}
+
+module.exports = withDemo({assetPrefix: "", apiOptions, csrfOptions, redisOptions, sessionOptions, jaegerOptions, sentry: sentryOptions})

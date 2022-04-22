@@ -1,4 +1,4 @@
-import koa from 'koa';
+import Koa from 'koa';
 import next from 'next';
 import router from "./interior/router";
 import context from "./interior/context";
@@ -15,12 +15,12 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   
-  const server = new koa()
+  const server = new Koa()
 
-  server.use(context(app, handle,router, {port, dev}))
+  server.use(context(app, handle, router, {port, dev}));
 
   server.use(router.routes());
-  
+
   portfinder.getPort(function (error, nextPort) {
     if(error) {
       console.error(error);

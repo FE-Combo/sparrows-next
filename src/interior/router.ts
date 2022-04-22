@@ -18,6 +18,7 @@ router.get("/health", async (ctx:RouterCTX, next)=>{
 
 // 路由
 router.get('(.*)', async (ctx: RouterCTX, next) => {
+    // 只处理next页面路由，如果api路由未过滤则无法执行api路由相关逻辑
     if(!/\/api\/.*/.test(ctx.path)) {
         const { req, res } = ctx
         const parsedUrl = parse(req.url!, true)
