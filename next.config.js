@@ -1,14 +1,20 @@
 const withPlugins = require('next-compose-plugins/lib')
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
-function withNext() {
-    return withPlugins([], {
-        publicRuntimeConfig: {},
-        webpack:(config)=>{
-            return config;
+module.exports = withPlugins([
+    [withPWA, {
+        pwa: {
+            dest: 'public',
+            runtimeCaching,
+            disable: process.env.NODE_ENV !== 'production'
         }
-    })
-}
-
-module.exports = withNext()
+    }]
+], {
+    publicRuntimeConfig: {},
+    webpack:(config)=>{
+        return config;
+    }
+})
 
 

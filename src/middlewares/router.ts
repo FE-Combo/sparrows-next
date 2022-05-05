@@ -1,9 +1,9 @@
 import Router from 'koa-router';
-import {ParameterizedContext} from "koa"
-import {ContextState} from "../type"
-import { parse } from 'url'
+import {ParameterizedContext, DefaultState,  DefaultContext, Next} from "koa";
+import { parse } from 'url';
 
-export type RouterCTX = ParameterizedContext<ContextState, Router.IRouterParamContext<any, {}>, any>;
+export type RouterCTX = ParameterizedContext<DefaultState, Router.IRouterParamContext<any, {}>, any>;
+
 
 const router = new Router();
 
@@ -29,5 +29,6 @@ router.get('(.*)', async (ctx: RouterCTX, next) => {
 })
 
 
-
-export default router;
+export const middleware = () => async (ctx: ParameterizedContext<DefaultState, RouterCTX>, next: Next) => {
+    await router.routes()(ctx,next)
+}

@@ -9,6 +9,8 @@ import signature from 'cookie-signature';
 import {FORMAT_HTTP_HEADERS} from 'opentracing';
 import Crypto from "../src/utils/crypto";
 
+// demo：简单的api中间件
+
 export interface Options {
     redisSecrets: string;
     cookieSecret: string;
