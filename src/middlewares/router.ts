@@ -17,15 +17,20 @@ router.get("/health", async (ctx:RouterCTX, next)=>{
 })
 
 // 路由
-router.get('(.*)', async (ctx: RouterCTX, next) => {
-    // 只处理next页面路由，如果api路由未过滤则无法执行api路由相关逻辑
+router.all('(.*)', async (ctx: RouterCTX, next) => {
+    // 跨域支持
+    ctx.res.setHeader('access-control-allow-origin', '*');
+
     if(!/\/api\/.*/.test(ctx.path)) {
-        const { req, res } = ctx
-        const parsedUrl = parse(req.url!, true)
-        await ctx.state.handle(req, res, parsedUrl)
-        ctx.respond = false
+        // 只处理next页面路由
+        const { req, res } = ctx;
+        const parsedUrl = parse(req.url!, true);
+        await ctx.state.handle(req, res, parsedUrl);
+        ctx.respond = false;
+    } else {
+        // /api路由（涉及网关逻辑）
+        await next();
     }
-    await next()
 })
 
 

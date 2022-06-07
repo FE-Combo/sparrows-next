@@ -5,9 +5,9 @@ import {withDemo} from "./demo";
 const apiOptions = {
     redisSecrets: '0011111111222222223333333344444444,01qqqqqqqqwwwwwwwweeeeeeeerrrrrrrr,02zzzzzzzzxxxxxxxxccccccccvvvvvvvv, 0300000100qqqqdqqqeeeseeeeyfyyyyyy',
     cookieSecret:"afeijflwekjflkjfifffjdfjkmdd",
-    whitelist: ["/api/v1.0/industry/user/verify-login"],
+    whitelist: ["/api/v1.0/industry/user/verify-login", "/api/v1.0/industry/user/verify-login2"],
     saveSessionApi: ["/api/v1.0/industry/user/verify-login"],
-    removeSessionApi: ["/api/v1.0/industry/user/verify-loginout"],
+    removeSessionApi: ["/api/v1.0/industry/user/logout"],
 }
 
 const csrfOptions = {

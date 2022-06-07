@@ -45,13 +45,16 @@ export const middleware = (options?: Options) => async (ctx: ParameterizedContex
             if(matchWhitelistUrl && matchWhitelistUrl(ctx.path)) {
                 if(matchSaveSessionUrl && matchSaveSessionUrl(ctx.path)) {
                     span.setTag("info", "save session");
+                    ctx.body = {info: "save session"}
                     await saveSession(crypto.encrypt(JSON.stringify({test: "test2"})), ctx);
                 } else {
                     span.setTag("info", "unauth normal");
+                    ctx.body = {info: "unauth normal"}
                 }
             } else {
                 if(matchremoveSessionUrl && matchremoveSessionUrl(ctx.path)) {
                     span.setTag("info", "remove session");
+                    ctx.body = {info: "remove session"}
                     await removeSession(ctx);
                 } else {
                     const session = await getSession(ctx);
@@ -62,6 +65,7 @@ export const middleware = (options?: Options) => async (ctx: ParameterizedContex
                         }
                     }
                     span.setTag("info", "auth normal");
+                    ctx.body = {info: "auth normal"};
                 } 
             }
         } else {
