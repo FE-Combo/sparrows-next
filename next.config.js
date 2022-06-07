@@ -31,7 +31,9 @@ module.exports = withPlugins([
 // /** @type {import('next').NextConfig} */
 // module.exports = {
 //   reactStrictMode: true,
+//   // 编译静态文件加上前缀
 //   basePath: baseRoute,
+//   // 读取静态文件加上前缀
 //   assetPrefix,
 //   // 添加 assetPrefix 地址到 publicRuntimeConfig
 //   publicRuntimeConfig: {
