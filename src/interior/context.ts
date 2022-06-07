@@ -45,11 +45,6 @@ const context = (app: NextServer, handle: RequestHandler, options: Record<string
   } else {
     await next()
   }
-
-  // 必须在next handle之后执行，否则在微前端框架中作为子应用会报错
-  if(typeof config?.assetPrefix === "string") {
-    app.setAssetPrefix(config.assetPrefix)
-  }
 }
 
 export default context

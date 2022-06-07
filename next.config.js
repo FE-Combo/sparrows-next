@@ -11,6 +11,7 @@ module.exports = withPlugins([
         }
     }]
 ], {
+    assetPrefix:"",
     publicRuntimeConfig: {},
     webpack:(config) => {
         return config;

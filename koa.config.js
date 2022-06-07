@@ -81,4 +81,4 @@ const sentryOptions = {
     tracesSampleRate: 1.0 
 }
 
-module.exports = withDemo({assetPrefix: "", apiOptions, csrfOptions, redisOptions, sessionOptions, jaegerOptions, sentry: sentryOptions})
+module.exports = withDemo({apiOptions, csrfOptions, redisOptions, sessionOptions, jaegerOptions, sentry: sentryOptions})
