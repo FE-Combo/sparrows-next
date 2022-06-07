@@ -25,10 +25,6 @@ const context = (app: NextServer, handle: RequestHandler, options: Record<string
   ctx.res.statusCode = 200;
   ctx.state = { app, handle, options, config}
 
-  if(typeof config?.assetPrefix === "string") {
-    app.setAssetPrefix(config.assetPrefix)
-  }
-
   if(typeof config?.sentry?.dsn === "string") {
     NodeSentry.init(config.sentry);
     ctx.onerror = (error: Error) => {
@@ -48,6 +44,11 @@ const context = (app: NextServer, handle: RequestHandler, options: Record<string
      await compose(config?.middlewares)(ctx, next)
   } else {
     await next()
+  }
+
+  // 必须在next handle之后执行，否则在微前端框架中作为子应用会报错
+  if(typeof config?.assetPrefix === "string") {
+    app.setAssetPrefix(config.assetPrefix)
   }
 }
 
