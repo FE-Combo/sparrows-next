@@ -17,11 +17,19 @@ export interface ProxyCTX  extends DefaultContext{
     }
 }
 
-export const middleware = (options?: Options) => async ( ctx: ParameterizedContext<DefaultState, ProxyCTX>, next: Next) => {
-    if(options && match(options.path, { decode: decodeURIComponent })(ctx.path)) {
+export const middleware = (options?: Options | Options[]) => async ( ctx: ParameterizedContext<DefaultState, ProxyCTX>, next: Next) => {
+    if(options instanceof Array) {
+        for(const _ of options ) {
+            const {path, ...restOptions} = _
+            if( match(path, { decode: decodeURIComponent })(ctx.path) ) {
+                return await c2k(createProxyMiddleware(restOptions || {}) as ConnectMiddleware)(ctx, next);
+            }
+        }
+    } else if(options instanceof Object) {
         const {path, ...restOptions} = options
-        await c2k(createProxyMiddleware(restOptions || {}) as ConnectMiddleware)(ctx, next)
-    } else {
-        await next();
+        if( match(path, { decode: decodeURIComponent })(ctx.path) ) {
+            return await c2k(createProxyMiddleware(restOptions || {}) as ConnectMiddleware)(ctx, next)
+        }
     }
+    await next();
 }
