@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-beta.12](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.11...v0.0.1-beta.12) (2022-07-02)
+
+
+### Bug Fixes
+
+* Cannot set headers after they are sent to the client ([4be6375](https://github.com/vocoWone/sparrows-next/commit/4be6375d228cc002c365b44af82502adb82b343d))
+
 ### [0.0.1-beta.11](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.10...v0.0.1-beta.11) (2022-07-02)
 
 
