@@ -19,11 +19,8 @@ router.get("/health", async (ctx:RouterCTX, next)=>{
 // 路由
 router.all('(.*)', async (ctx: RouterCTX, next) => {
     // 跨域支持
-    if(ctx.req.headers?.["x-requested-with"]  !== "XMLHttpRequest") {
-        // 服务端请求api标识
-        // 未配置导致服务端请求接口出现Error: Cannot set headers after they are sent to the client，服务端页面请求已返回但接口请求触发是调用了setHeader
-        ctx.res.setHeader('access-control-allow-origin', '*');
-    }
+    // 不能使用 ctx.res.setHeader 否则会导致 Error: Cannot set headers after they are sent to the client
+    ctx.set('access-control-allow-origin', '*');
    
     if(!/\/api\/.*/.test(ctx.path)) {
         // 只处理next页面路由
