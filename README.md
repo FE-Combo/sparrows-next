@@ -35,8 +35,8 @@
 - 如果作为独立服务部署请使用[sparrows](https://github.com/vocoWone/sparrows)
 
 ## Q&A
-- Q: 为什么不直接使用Next API Routes特性？
-- A: 如果只是简单的做一些api签名逻辑直接使用API Routes也是很好的解决方案。但该方式存在一些问题：1.不支持koa及相关成熟中间件；2.服务本身能力受限于next；3.所有链路经过next。
+- Q: 为什么不直接使用[API Routes](https://nextjs.org/docs/api-routes/introduction)特性？
+- A: 如果只是简单的做一些api签名逻辑直接使用API Routes也是很好的解决方案。但该方式存在一些问题：1.不支持koa及相关成熟中间件；2.服务本身能力受限于next；3.所有流量都会经过next，4.无法配置跨域(微应用)。
 
 - Q: 如何搭建api前端网关？
 - A: 一个简单的api网关必须具备sesion管理（已提供）以及调用后端api的能力。如何调用后端api需要业务方自行封装api中间件。
