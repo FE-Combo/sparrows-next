@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-beta.11](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.10...v0.0.1-beta.11) (2022-07-02)
+
+
+### Bug Fixes
+
+* setHeader when call api in server ([3244fe6](https://github.com/vocoWone/sparrows-next/commit/3244fe64da435f2a07081f58e2a3ae71727e6e36))
+
 ### 0.0.1-beta.10 (2022-06-21)
 
 ### [0.0.1-beta.9](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.8...v0.0.1-beta.9) (2022-06-07)
