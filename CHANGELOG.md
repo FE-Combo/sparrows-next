@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-beta.13](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.12...v0.0.1-beta.13) (2022-07-15)
+
 ### [0.0.1-beta.12](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.11...v0.0.1-beta.12) (2022-07-02)
 
 
