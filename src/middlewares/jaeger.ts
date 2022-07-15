@@ -22,15 +22,6 @@ export const middleware = (options: Options) => async ( ctx: ParameterizedContex
         parentSpan
     };
     ctx.set("traceid", traceId);
-    const { headers: reqHeaders, method, host, query, body } = ctx.request
-    const { headers: resHeasers } = ctx.response;
-    parentSpan.setTag('reqHeaders', reqHeaders)
-    parentSpan.setTag("host", host)
-    parentSpan.setTag("method", method)
-    parentSpan.setTag("path", ctx.path)
-    parentSpan.setTag("query", query)
-    parentSpan.setTag("body", body)
-    parentSpan.setTag("resHeasers", resHeasers)
     await next();
     parentSpan.finish();
 }
