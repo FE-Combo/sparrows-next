@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-beta.14](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.13...v0.0.1-beta.14) (2022-07-22)
+
+
+### Features
+
+* global error handler ([8665a1e](https://github.com/vocoWone/sparrows-next/commit/8665a1ee80d641fb835eb272a00d767ca199706b))
+
 ### [0.0.1-beta.13](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.12...v0.0.1-beta.13) (2022-07-15)
 
 ### [0.0.1-beta.12](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.11...v0.0.1-beta.12) (2022-07-02)
