@@ -13,17 +13,15 @@ export async function getConfig() {
 export interface CTXState {
   app:NextServer,
   handle: RequestHandler,
-  options: Record<string, any>
   config: Record<string, any>
 }
 
-const context = (app: NextServer, handle: RequestHandler, options: Record<string, any>) => async (
+const context = (app: NextServer, handle: RequestHandler, config: Record<string, any>) => async (
   ctx: ParameterizedContext<CTXState, DefaultContext>,
   next: Next
 ) => {
-  const config = await getConfig();
   ctx.res.statusCode = 200;
-  ctx.state = { app, handle, options, config}
+  ctx.state = { app, handle, config}
 
   if(typeof config?.sentry?.dsn === "string") {
     NodeSentry.init(config.sentry);

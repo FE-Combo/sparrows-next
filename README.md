@@ -5,6 +5,7 @@
 - 自定义Koa服务，支持Koa中间件
 - 无入侵行为，保留next原有特性
 - 支持接入sentry, 只上报koa错误信息, next错误上报逻辑需在next应用中注入。
+- 异常统一处理机制
 
 ## build-in middlewares
 - *context: 存储next、koa实例
