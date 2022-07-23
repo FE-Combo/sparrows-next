@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-beta.15](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.14...v0.0.1-beta.15) (2022-07-23)
+
+
+### Bug Fixes
+
+* 兼容微应用baseRoute ([e17b81e](https://github.com/vocoWone/sparrows-next/commit/e17b81e1866dee95295411e05a031be7834217ff))
+
 ### [0.0.1-beta.14](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.13...v0.0.1-beta.14) (2022-07-22)
 
 
