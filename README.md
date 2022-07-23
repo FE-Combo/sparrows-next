@@ -34,6 +34,7 @@
 - 框架本身只提供基础中间件与工具函数，具体api逻辑根据业务自定义
 - 开启sentry时，会重写`ctx.onerror`，如果对`ctx.onerror`有特殊要求可以重新覆盖，但需要重新添加sentry上报逻辑否则sentry将失效。
 - 如果作为独立服务部署请使用[sparrows](https://github.com/vocoWone/sparrows)
+- 页面路由不允许存在`*/api/*`的格式，此格式专用于云端接口
 
 ## Q&A
 - Q: 为什么不直接使用[API Routes](https://nextjs.org/docs/api-routes/introduction)特性？

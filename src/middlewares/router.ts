@@ -4,11 +4,14 @@ import { parse } from 'url';
 
 export type RouterCTX = ParameterizedContext<DefaultState, Router.IRouterParamContext<any, {}>, any>;
 
+// 作为微应用，子应用的baseRoute前缀必须与框架路由前缀保持一致
+// e.g: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+const baseRoute = process.env.BASE_ROUTE || ""
 
 const router = new Router();
 
 // 健康监测
-router.get("/health", async (ctx:RouterCTX, next)=>{
+router.get(`${baseRoute}/health`, async (ctx:RouterCTX, next)=>{
     const { res } = ctx
     res.writeHead(200, { 'Content-type': 'text/html' })
     res.end("ok")
