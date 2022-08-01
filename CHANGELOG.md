@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-beta.17](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.16...v0.0.1-beta.17) (2022-08-01)
+
+
+### Bug Fixes
+
+* 服务请求traceid消失问题 ([9dfe2f4](https://github.com/vocoWone/sparrows-next/commit/9dfe2f485250a47cb56fafe0a70c34b9c4f51755))
+
 ### [0.0.1-beta.16](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.15...v0.0.1-beta.16) (2022-08-01)
 
 ### [0.0.1-beta.15](https://github.com/vocoWone/sparrows-next/compare/v0.0.1-beta.14...v0.0.1-beta.15) (2022-07-23)
