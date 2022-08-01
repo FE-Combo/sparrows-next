@@ -20,11 +20,7 @@ router.get(`${baseRoute}/health`, async (ctx:RouterCTX, next)=>{
 })
 
 // 路由
-router.all('(.*)', async (ctx: RouterCTX, next) => {
-    // 跨域支持
-    // 不能使用 ctx.res.setHeader 否则会导致 Error: Cannot set headers after they are sent to the client
-    ctx.set('access-control-allow-origin', '*');
-   
+router.all('(.*)', async (ctx: RouterCTX, next) => {   
     if(!/\/api\/.*/.test(ctx.path)) {
         // 只处理next页面路由
         const { req, res } = ctx;
