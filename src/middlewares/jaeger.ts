@@ -61,6 +61,7 @@ export function initJaeger(ooptions: InitJaeger, ctx: ParameterizedContext<Defau
     return {jaeger, parentSpan: span, traceId};
 }
 
+// 若存在sub span逻辑必须要在router执行handle之前执行，否则next中拿不到x-b3-traceid
 export function createSubSpan (operationName: string,ctx: ParameterizedContext<DefaultState, DefaultContext>){
     const jaeger = ctx.jaeger as JaegerCTX["jaeger"]
     const config = { childOf: jaeger.parentSpan }

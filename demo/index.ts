@@ -5,6 +5,7 @@ import { middleware as redisMiddleware, KoaRedis } from "../src/middlewares/redi
 import { middleware as routerMiddleware } from "../src/middlewares/router";
 import { middleware as corsMiddleware } from "../src/middlewares/cors";
 import { middleware as proxyMiddleware, Options as ProxyOptons} from "../src/middlewares/proxy";
+import bodyparser from "koa-bodyparser";
 
 interface JaegerOptions {
     endpoint: string;
@@ -28,10 +29,10 @@ interface ApiConfig {
 
 export const withDemo = (config: ApiConfig)=> {
     const {assetPrefix="", jaegerOptions, csrfOptions, redisOptions, sessionOptions, apiOptions, proxyOptions, ...restConfig} = config;
-    const appMiddlewares = [corsMiddleware(), routerMiddleware(), jaegerMiddleware(jaegerOptions), csrfMiddleware(csrfOptions), redisMiddleware({redisOptions, sessionOptions}), proxyMiddleware(proxyOptions)]
+    const appMiddlewares = [bodyparser(), corsMiddleware(), jaegerMiddleware(jaegerOptions), csrfMiddleware(csrfOptions), redisMiddleware({redisOptions, sessionOptions}), proxyMiddleware(proxyOptions), apiMiddleware(apiOptions), routerMiddleware()]
     return {
         assetPrefix,
-        middlewares: [...appMiddlewares, apiMiddleware(apiOptions)],
+        middlewares: appMiddlewares,
         ...restConfig
     }
 }

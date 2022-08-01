@@ -4,7 +4,6 @@ import {saveSession, RedisCTX} from "../src/middlewares/redis";
 import {CsrfCTX} from "../src/middlewares/csrf"
 import {JaegerCTX, createSubSpan} from "../src/middlewares/jaeger"
 import {ProxyCTX} from "../src/middlewares/proxy";
-import bodyparser from "koa-bodyparser";
 import signature from 'cookie-signature';
 import {FORMAT_HTTP_HEADERS} from 'opentracing';
 import Crypto from "../src/utils/crypto";
@@ -27,8 +26,6 @@ export const middleware = (options?: Options) => async (ctx: ParameterizedContex
     createExistMiddlewaresLogs(ctx);
     const span = createSubSpan("api", ctx)
     ctx.jaeger.jaeger.inject(span, FORMAT_HTTP_HEADERS, ctx.req.headers);
-
-    await bodyparser()(ctx,next);
 
     if(options) {
         ctx.api = options;
@@ -72,7 +69,7 @@ export const middleware = (options?: Options) => async (ctx: ParameterizedContex
             span.setTag("route", true)
         }     
     }
-   
+    await next()
     span.finish();
 }
 

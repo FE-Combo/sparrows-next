@@ -27,10 +27,9 @@ router.all('(.*)', async (ctx: RouterCTX, next) => {
         const parsedUrl = parse(req.url!, true);
         await ctx.state.handle(req, res, parsedUrl);
         ctx.respond = false;
-    } else {
-        // /api路由（涉及网关逻辑）
-        await next();
-    }
+    } 
+    // 所有路由都需要往后执行，若要匹配路由可以在路由内添加相应逻辑
+    await next();
 })
 
 
