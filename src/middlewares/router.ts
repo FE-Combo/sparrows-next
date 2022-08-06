@@ -20,16 +20,26 @@ router.get(`${baseRoute}/health`, async (ctx:RouterCTX, next)=>{
 })
 
 // 路由
+// 当前组件需要在所有插件之前执行
 router.all('(.*)', async (ctx: RouterCTX, next) => {   
-    if(!/\/api\/.*/.test(ctx.path)) {
-        // 只处理next页面路由
+    if(ctx.path.includes("/_next/static/") || ctx.path.includes("/_next/webpack-hmr")) {
+        // 静态资源
+        // 暂时无法区分public与pages路由，建议将静态资源文件存放至第三方服务来持久化存储或者在构建时移至.next/static/文件下
         const { req, res } = ctx;
         const parsedUrl = parse(req.url!, true);
         await ctx.state.handle(req, res, parsedUrl);
         ctx.respond = false;
-    } 
-    // 所有路由都需要往后执行，若要匹配路由可以在路由内添加相应逻辑
-    await next();
+    } else if(/^\/api\/.*/.test(ctx.path)) {
+        // 调用云端 api
+        await next();
+    } else {
+        // next 页面路由
+        await next();
+        const { req, res } = ctx;
+        const parsedUrl = parse(req.url!, true);
+        await ctx.state.handle(req, res, parsedUrl);
+        ctx.respond = false;
+    }
 })
 
 

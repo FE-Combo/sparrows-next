@@ -26,6 +26,7 @@ app.prepare().then(async () => {
   const server = new Koa()
 
   const config = (await getConfig()) || {};
+  
   onerror(server, config?.errorOptions);
 
   server.use(context(app, handle, {...config, port, dev}));
