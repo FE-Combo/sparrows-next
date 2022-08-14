@@ -20,7 +20,7 @@ router.get(`${baseRoute}/health`, async (ctx:RouterCTX, next)=>{
 })
 
 // 路由
-// 当前组件需要在所有插件之前执行
+// 当前组件需要在所有插件之前执行，跨域配置除外
 router.all('(.*)', async (ctx: RouterCTX, next) => {   
     if(ctx.path.includes("/_next/static/") || ctx.path.includes("/_next/webpack-hmr")) {
         // 静态资源
