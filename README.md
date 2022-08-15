@@ -13,7 +13,7 @@
 - redis: sesion管理，redis初始化、save/remove逻辑
 - jaeger: jaeger链路查询
 - proxy: 代理
-- router: 提供api路由以及应用健康监测，支持跨域
+- router: 提供应用健康监测/应用路由/api路由
 
 ## build-in utils
 - apollo: 官方Apollo配置中心
