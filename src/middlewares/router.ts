@@ -14,7 +14,7 @@ export const middleware = () => async ( ctx: ParameterizedContext<DefaultState, 
         res.writeHead(200, { 'Content-type': 'text/html' })
         res.end("ok")
         ctx.respond = false
-    } else if(ctx.path.includes("/_next/static/") || ctx.path.includes("/_next/webpack-hmr")) {
+    } else if(ctx.path.includes("/_next/static/") || ctx.path.includes("/_next/webpack-hmr") || ctx.path.includes("/__nextjs_original-stack-frame")) {
         // 静态资源
         // 暂时无法区分public与pages路由，建议将静态资源文件存放至第三方服务来持久化存储或者在构建时移至.next/static/文件下
         const { req, res } = ctx;

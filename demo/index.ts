@@ -17,7 +17,6 @@ interface CsrfOptions {
 }
 
 interface ApiConfig {
-    assetPrefix?: string
     jaegerOptions: JaegerOptions
     csrfOptions: CsrfOptions
     redisOptions: KoaRedis["redisOptions"]
@@ -29,7 +28,7 @@ interface ApiConfig {
 
 export const withDemo = (config: ApiConfig)=> {
     const {jaegerOptions, csrfOptions, redisOptions, sessionOptions, apiOptions, proxyOptions, ...restConfig} = config;
-    const appMiddlewares = [corsMiddleware(), routerMiddleware(), bodyparser(), jaegerMiddleware(jaegerOptions), csrfMiddleware(csrfOptions), redisMiddleware({redisOptions, sessionOptions}), proxyMiddleware(proxyOptions), apiMiddleware(apiOptions)]
+    const appMiddlewares = [corsMiddleware(), routerMiddleware(), proxyMiddleware(proxyOptions), bodyparser(), jaegerMiddleware(jaegerOptions), csrfMiddleware(csrfOptions), redisMiddleware({redisOptions, sessionOptions}), apiMiddleware(apiOptions)]
     return {
         middlewares: appMiddlewares,
         ...restConfig

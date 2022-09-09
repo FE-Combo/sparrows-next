@@ -5,6 +5,8 @@ import c2k from 'koa-connect'
 import {match} from "path-to-regexp";
 import {IncomingMessage, ServerResponse} from "http"
 
+// proxy必须在bodyparser之前执行
+
 export interface Options extends ProxyOptions {
     path: string | RegExp | (string | RegExp)[],
 }

@@ -26,9 +26,9 @@
 
 ## 使用
 - 安装：yarn add sparrows-next --save
-- 开发环境启动：sparrows dev
+- 开发环境启动：yarn sparrows
+- 启动：yarn sparrows（开发环境与线上环境启动命令相同，通过环境变量 NODE_ENV 区分）
 - 构建：next build
-- 启动：sparrows start
 
 ## Attentions
 - 框架本身只提供基础中间件与工具函数，具体api逻辑根据业务自定义
@@ -44,6 +44,5 @@
 - A: 一个简单的api网关必须具备sesion管理（已提供）以及调用后端api的能力。如何调用后端api需要业务方自行封装api中间件。
 
 ## koa.config.js配置说明
-- assetPrefix: CDN前缀
 - middlewares: 中间件列表, 支持自定义中间件满足koa标准即可
 - sentry: [sentry接入参数](https://docs.sentry.io/platforms/node/)
