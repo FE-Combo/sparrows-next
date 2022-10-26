@@ -19,30 +19,31 @@ portfinder.basePort = port;
 
 const dev = process.env.NODE_ENV !== 'production'
 // dev 用于判断是否重新生成.next，也就是next dev 与 next start的区别
-const app = next({ dev })
-const handle = app.getRequestHandler()
 
-app.prepare().then(async () => {
+portfinder.getPort(function (error, nextPort) {
+  if(error) {
+    console.error(error);
+    return;
+  }
+  if(port!==nextPort) {
+    process.env.PORT = nextPort + "";
+    console.info(`${chalk.yellow("warn")}  - Port ${port} is in use, trying ${nextPort} instead.`)
+  }
 
-  const server = new Koa()
+  const app = next({ dev, port: nextPort })
+  const handle = app.getRequestHandler()
+  app.prepare().then(async () => {
 
-  const config = (await getConfig()) || {};
+    const server = new Koa()
   
-  onerror(server, config?.errorOptions);
-
-  server.use(context(app, handle, {...config, port, dev}));
-
-  portfinder.getPort(function (error, nextPort) {
-    if(error) {
-      console.error(error);
-      return;
-    }
-    if(port!==nextPort) {
-      console.info(`${chalk.yellow("warn")}  - Port ${port} is in use, trying ${nextPort} instead.`)
-    }
+    const config = (await getConfig()) || {};
+    
+    onerror(server, config?.errorOptions);
+  
+    server.use(context(app, handle, {...config, port, dev}));
     process.env.PORT = nextPort.toString()
     server.listen(nextPort, () => console.info(`${chalk.green("ready")} - started server on 0.0.0.0:${nextPort}, url: http://localhost:${nextPort}`))
-  });
-}).catch((error)=>{
-  console.log(error)
+  }).catch((error)=>{
+    console.error(error)
+  })
 })
