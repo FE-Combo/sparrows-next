@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2-beta.2](https://github.com/vocoWone/sparrows-next/compare/v0.0.2-beta.1...v0.0.2-beta.2) (2022-10-26)
+
+
+### Bug Fixes
+
+* auto switch port ([b4252b6](https://github.com/vocoWone/sparrows-next/commit/b4252b6a728c6960fd48ab960805265903b08c06))
+
 ### [0.0.2-beta.1](https://github.com/vocoWone/sparrows-next/compare/v0.0.2-beta.0...v0.0.2-beta.1) (2022-09-09)
 
 ### [0.0.2-beta.0](https://github.com/vocoWone/sparrows-next/compare/v0.0.1...v0.0.2-beta.0) (2022-08-15)
