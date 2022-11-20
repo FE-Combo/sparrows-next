@@ -7,6 +7,13 @@ import portfinder from "portfinder";
 import onerror from "koa-onerror";
 import chalk from "chalk";
 
+if(process.env.DEBUG) {
+  const easyMonitor = require("easy-monitor");
+
+  easyMonitor("sparrows-next");
+}
+
+
 export async function getConfig() {
   const configPath = process.cwd() + "/koa.config.js";
   const config = require(configPath);
@@ -40,7 +47,7 @@ portfinder.getPort(function (error, nextPort) {
     
     onerror(server, config?.errorOptions);
   
-    server.use(context(app, handle, {...config, port, dev}));
+    server.use(context(handle, {...config, port, dev}));
     process.env.PORT = nextPort.toString()
     server.listen(nextPort, () => console.info(`${chalk.green("ready")} - started server on 0.0.0.0:${nextPort}, url: http://localhost:${nextPort}`))
   }).catch((error)=>{

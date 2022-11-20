@@ -1,5 +1,5 @@
 import { ParameterizedContext, Next, DefaultContext } from 'koa'
-import {NextServer, RequestHandler} from 'next/dist/server/next'
+import {RequestHandler} from 'next/dist/server/next'
 import compose from 'koa-compose';
 import "@sentry/tracing";
 import * as NodeSentry from "@sentry/node";
@@ -11,17 +11,16 @@ export async function getConfig() {
 }
 
 export interface CTXState {
-  app:NextServer,
   handle: RequestHandler,
   config: Record<string, any>
 }
 
-const context = (app: NextServer, handle: RequestHandler, config: Record<string, any>) => async (
+const context = (handle: RequestHandler, config: Record<string, any>) => async (
   ctx: ParameterizedContext<CTXState, DefaultContext>,
   next: Next
 ) => {
   ctx.res.statusCode = 200;
-  ctx.state = { app, handle, config}
+  ctx.state = { handle, config}
 
   if(typeof config?.sentry?.dsn === "string") {
     NodeSentry.init(config.sentry);

@@ -1,16 +1,25 @@
 
 import {ParameterizedContext, DefaultState,  DefaultContext, Next} from "koa";
 import { parse } from 'url';
+const startMem = process.memoryUsage();
 
 // 作为微应用，子应用的baseRoute前缀必须与框架路由前缀保持一致
 // e.g: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
 const baseRoute = process.env.BASE_ROUTE
 
+function calc(data: number) {
+    return Math.round((data / 1024 / 1024) * 10000) / 10000 + " MB";
+}
+  
 // 当前组件需要在所有插件之前执行，跨域配置除外
 export const middleware = () => async ( ctx: ParameterizedContext<DefaultState, DefaultContext>, next: Next) => {
     if(ctx.path===`${ctx.state.baseRoute || baseRoute || ""}/health` && ctx.method==="GET") {
         // 健康监测
         const { res } = ctx
+        if(process.env.DEBUG) {
+            const mem = process.memoryUsage();
+            console.info(`memory before: ${calc(startMem.rss)}; memory now: ${calc(mem.rss)}; diff increase: ${calc(mem.rss - startMem.rss)}`);
+        }
         res.writeHead(200, { 'Content-type': 'text/html' })
         res.end("ok")
         ctx.respond = false

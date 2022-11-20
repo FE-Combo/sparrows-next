@@ -22,7 +22,8 @@
 
 ## 压测
 - 一般都采用ab，wrk，siege等工具
-- ab -r -n 1000 -c 50 http://localhost:3000/ 
+- ab -n 10000 -c 10  http://localhost:3000/home
+- 内存消耗一般在300m左右，cpu在0.3核左右
 
 ## 使用
 - 安装：yarn add sparrows-next --save
