@@ -8,6 +8,7 @@
   "scripts": {
     "reinstall": "rm -rf node_modules && rm -rf yarn.lock && rm -rf .next && yarn install",
     "dev": "PORT=3000 && DEBUG=TRUE nodemon",
+    "dev:inspect": "nodemon --exec \"node --require ts-node/register --inspect ./src/index.ts\"",
     "dev:redis": "DEBUG=ioredis:* nodemon",
     "next": "next",
     "build": " NODE_ENV=production next build",

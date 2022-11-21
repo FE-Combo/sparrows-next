@@ -22,8 +22,12 @@ export const middleware = (options: Options) => async ( ctx: ParameterizedContex
         parentSpan
     };
     ctx.set("traceid", traceId);
-    await next();
-    parentSpan.finish();
+    try {
+        await next();
+    } finally {
+        parentSpan.finish();  
+    }
+
 }
 
 interface InitJaeger {

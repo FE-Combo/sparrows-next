@@ -45,8 +45,9 @@ portfinder.getPort(function (error, nextPort) {
   
     const config = (await getConfig()) || {};
     
+    // steam 和事件的错误直接由 ctx.onerror 处理
     onerror(server, config?.errorOptions);
-  
+
     server.use(context(handle, {...config, port, dev}));
     process.env.PORT = nextPort.toString()
     server.listen(nextPort, () => console.info(`${chalk.green("ready")} - started server on 0.0.0.0:${nextPort}, url: http://localhost:${nextPort}`))
