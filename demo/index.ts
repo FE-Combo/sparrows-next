@@ -29,7 +29,7 @@ interface ApiConfig {
 
 export const withDemo = (config: ApiConfig)=> {
     const {jaegerOptions, csrfOptions, redisOptions, sessionOptions, apiOptions, proxyOptions, ...restConfig} = config;
-    const appMiddlewares = [errorMiddleware(), corsMiddleware(), routerMiddleware(), proxyMiddleware(proxyOptions), bodyparser(), jaegerMiddleware(jaegerOptions), csrfMiddleware(csrfOptions), redisMiddleware({redisOptions, sessionOptions}), apiMiddleware(apiOptions)]
+    const appMiddlewares = [errorMiddleware(), corsMiddleware(), routerMiddleware({whitelist:["/", "/login", "/home"],staticlist: ["/icons/(.*)"], redirectRoute:"/login"}), proxyMiddleware(proxyOptions), bodyparser(), jaegerMiddleware(jaegerOptions), csrfMiddleware(csrfOptions), redisMiddleware({redisOptions, sessionOptions}), apiMiddleware(apiOptions)]
     return {
         middlewares: appMiddlewares,
         ...restConfig
