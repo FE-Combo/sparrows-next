@@ -9,6 +9,7 @@ export const middleware = () => async ( ctx: ParameterizedContext<DefaultState, 
     // will only respond with JSON
     ctx.status = error.statusCode || error.status || 500;
     ctx.body = {
+      ...ctx.body as Record<string, any>,
       message: error.message
     };
   }
