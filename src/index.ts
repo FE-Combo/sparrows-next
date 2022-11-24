@@ -7,11 +7,11 @@ import portfinder from "portfinder";
 import onerror from "koa-onerror";
 import chalk from "chalk";
 
-if(process.env.DEBUG) {
-  const easyMonitor = require("easy-monitor");
+// if(process.env.DEBUG) {
+//   const easyMonitor = require("easy-monitor");
 
-  easyMonitor("sparrows-next");
-}
+//   easyMonitor("sparrows-next");
+// }
 
 
 export async function getConfig() {

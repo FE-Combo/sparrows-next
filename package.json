@@ -67,7 +67,6 @@
     "chalk": "^4.1.2",
     "crypto-js": "^4.1.1",
     "csrf": "^3.1.0",
-    "easy-monitor": "^2.2.8",
     "http-proxy-middleware": "^2.0.3",
     "ioredis": "^4.28.2",
     "jaeger-client": "^3.19.0",
