@@ -31,6 +31,11 @@
 - 启动：yarn sparrows（开发环境与线上环境启动命令相同，通过环境变量 NODE_ENV 区分）
 - 构建：next build
 
+## Docker
+    ```
+    TODO
+    ```
+
 ## Attentions
 - 框架本身只提供基础中间件与工具函数，具体api逻辑根据业务自定义
 - 开启sentry时，会重写`ctx.onerror`，如果对`ctx.onerror`有特殊要求可以重新覆盖，但需要重新添加sentry上报逻辑否则sentry将失效。

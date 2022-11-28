@@ -6,11 +6,17 @@ export const middleware = () => async ( ctx: ParameterizedContext<DefaultState, 
   try {
     await next();
   } catch (error: any) {
-    // will only respond with JSON
-    ctx.status = error.statusCode || error.status || 500;
-    ctx.body = {
-      ...ctx.body as Record<string, any>,
-      message: error.message
-    };
+      // will only respond with JSON
+      try {
+        const {status, statusCode, body} = JSON.parse(error.message);
+        ctx.status = statusCode || status || 500;
+        ctx.body = body;
+      } catch (error:any) {
+        ctx.status = error.statusCode || error.status || 500;
+        ctx.body = {
+          message: error.message
+        };
+      }
+
   }
 }
