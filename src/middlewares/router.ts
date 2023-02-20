@@ -1,7 +1,7 @@
 
 import {ParameterizedContext, DefaultState,  DefaultContext, Next} from "koa";
 import { parse } from 'url';
-import {match, MatchFunction} from "path-to-regexp";
+import {match} from "path-to-regexp";
 const startMem = process.memoryUsage();
 
 // 作为微应用，子应用的baseRoute前缀必须与框架路由前缀保持一致
@@ -53,6 +53,7 @@ export const middleware = (options?: Options) => async ( ctx: ParameterizedConte
             // next 页面路由
             await next();
             const { req, res } = ctx;
+            // 给 req 赋值可以实现 koa 与 next 通信
             const parsedUrl = parse(req.url!, true);
             await ctx.state.handle(req, res, parsedUrl);
         }

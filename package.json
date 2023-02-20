@@ -11,7 +11,8 @@
     "dev:inspect": "nodemon --exec \"node --require ts-node/register --inspect ./src/index.ts\"",
     "dev:redis": "DEBUG=ioredis:* nodemon",
     "next": "next",
-    "build": " NODE_ENV=production next build",
+    "start": "NODE_ENV=production node bin/sparrows",
+    "build": "yarn tsc-demo && yarn build:lib && NODE_ENV=production next build",
     "build:lib": "rm -rf ./dist && tsc --project tsconfig.build.json",
     "dep": "sh ./dep/redis.sh && sh ./dep/jaeger.sh",
     "release": "standard-version",
@@ -19,7 +20,8 @@
     "release:alpha": "standard-version --prerelease alpha",
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch"
+    "release:patch": "standard-version --release-as patch",
+    "tsc-demo":"rm -rf ./tsc-demo && tsc --project tsconfig.demo.json"
   },
   "files": [
     "bin",

@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "module": "commonjs",
+      "target": "es5",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "jsx": "preserve",
+      "lib": [
+        "es2017",
+        "dom"
+      ],
+      "outDir": "./tsc-demo/",
+      "strict": true,
+      "allowSyntheticDefaultImports": true,
+      "importHelpers": true,
+      "noImplicitAny": true,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "forceConsistentCasingInFileNames": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "esModuleInterop": true,
+      "inlineSources": true,
+      "declaration": true,
+      "skipLibCheck": true,
+      "paths": {
+        "@node/*": [
+          "node/*"
+        ]
+      },
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "allowJs": true,
+      "noEmit": false,
+      "incremental": true
+    },
+    "include": [
+      "next-env.d.ts", "global.d.ts", "./demo", "./src"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "tsc-demo"
+    ]
+  }
+  

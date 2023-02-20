@@ -1,5 +1,8 @@
+![version](https://img.shields.io/npm/v/sparrows-next.svg)
+![downloads](https://img.shields.io/npm/dt/sparrows-next.svg)
+
 # SPARROWS-NEXT
-- 麻雀虽小，五脏俱全；轻量级NEXT+KOA应用框架
+- 麻雀虽小，五脏俱全；增强next应用的koa框架
 
 ## 特性
 - 自定义Koa服务，支持Koa中间件
@@ -41,6 +44,7 @@
 - 开启sentry时，会重写`ctx.onerror`，如果对`ctx.onerror`有特殊要求可以重新覆盖，但需要重新添加sentry上报逻辑否则sentry将失效。
 - 如果作为独立服务部署请使用[sparrows](https://github.com/vocoWone/sparrows)
 - 页面路由不允许存在`*/api/*`的格式，此格式专用于云端接口
+- 项目中的`Dockerfile`、`start.sh`无法用于当前demo
 
 ## Q&A
 - Q: 为什么不直接使用[API Routes](https://nextjs.org/docs/api-routes/introduction)特性？
@@ -50,5 +54,5 @@
 - A: 一个简单的api网关必须具备sesion管理（已提供）以及调用后端api的能力。如何调用后端api需要业务方自行封装api中间件。
 
 ## koa.config.js配置说明
-- middlewares: 中间件列表, 支持自定义中间件满足koa标准即可
+- middlewares: 中间件列表, 支持自定义中间件满足 [koa 标准](https://github.com/koajs/koa/wiki#middleware)即可
 - sentry: [sentry接入参数](https://docs.sentry.io/platforms/node/)

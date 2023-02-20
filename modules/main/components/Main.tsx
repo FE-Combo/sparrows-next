@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-interface Props {
+export interface Props {
   Component: React.ComponentType<any>; // router component
   pageProps: object; // router component props
 }

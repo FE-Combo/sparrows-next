@@ -39,7 +39,7 @@ export const middleware = (options: Options) => async ( ctx: ParameterizedContex
     })(ctx, next);
 }
 
-// 该方法会自动在浏览器上种下cookie，返回的sessionId就是对应浏览器的cookie值。但是当前链路不会立即生效需要发送到客户端后才能生效，所以ctx.cookies.get(sid)拿不到最新值，若在同一链路上更新cookie需要手动将sid存储到ctx上或往下透传
+// 该方法会返回请求头 set-cookie（在浏览器种下cookie），返回的sessionId就是对应浏览器的cookie值。但是当前链路不会立即生效需要发送到客户端后才能生效，所以ctx.cookies.get(sid)拿不到最新值，若在同一链路上更新cookie需要手动将sid存储到ctx上或往下透传
 export const saveSession = async (value: any, ctx: ParameterizedContext<DefaultState, RedisCTX>, key: string = "payload") => {
     try {    
         ctx.session![key] = value;

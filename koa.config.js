@@ -1,6 +1,8 @@
-import signature from 'cookie-signature';
-import * as uuid from 'uuid';
-import {withDemo} from "./demo";
+const signature =  require('cookie-signature');
+const uuid = require('uuid');
+const {withDemo} = require("./demo");
+// yarn start 时使用 const {withDemo} = require("./tsc-demo/demo");
+
 
 const apiOptions = {
     redisSecrets: '0011111111222222223333333344444444,01qqqqqqqqwwwwwwwweeeeeeeerrrrrrrr,02zzzzzzzzxxxxxxxxccccccccvvvvvvvv, 0300000100qqqqdqqqeeeseeeeyfyyyyyy',
