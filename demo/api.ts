@@ -1,12 +1,12 @@
 import {Next,ParameterizedContext, DefaultState} from "koa";
 import {match} from "path-to-regexp";
-import {saveSession, RedisCTX} from "../src/middlewares/redis";
-import {CsrfCTX} from "../src/middlewares/csrf"
-import {JaegerCTX, createSubSpan} from "../src/middlewares/jaeger"
-import {ProxyCTX} from "../src/middlewares/proxy";
+import {saveSession, RedisCTX} from "sparrows/dist/middlewares/redis";
+import {CsrfCTX} from "sparrows/dist/middlewares/csrf"
+import {JaegerCTX, createSubSpan} from "sparrows/dist/middlewares/jaeger"
+import {ProxyCTX} from "sparrows/dist/middlewares/proxy";
 import signature from 'cookie-signature';
 import {FORMAT_HTTP_HEADERS} from 'opentracing';
-import Crypto from "../src/utils/crypto";
+import Crypto from "sparrows/dist/utils/crypto";
 
 // demo：简单的api中间件
 

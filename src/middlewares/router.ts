@@ -1,4 +1,6 @@
 
+// TODO: 即将被废弃
+
 import {ParameterizedContext, DefaultState,  DefaultContext, Next} from "koa";
 import { parse } from 'url';
 import {match} from "path-to-regexp";
@@ -21,6 +23,7 @@ export interface Options {
 }
   
 // 当前组件需要在所有插件之前执行，跨域配置除外
+// 该中间件主要用于划分【api路由】与【页面路由】
 export const middleware = (options?: Options) => async ( ctx: ParameterizedContext<DefaultState, DefaultContext>, next: Next) => {
     const {baseRoute: optionBaseRoute, redirectRoute, whitelist=[], staticlist=[], cookie="s-sid"} = options || {};
     const nextStaticlist = staticlist.concat(["/_next/static/(.*)", "/_next/webpack-hmr", "/__nextjs_original-stack-frame", "/manifest.json", "/favicon.ico"])
