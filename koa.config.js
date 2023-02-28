@@ -47,7 +47,10 @@ const sessionOptions = {
             // 可在此操作中清除原先的redis缓存
             const cookieKey = this.cookies.get(sessionOptions.key, {});
             if(cookieKey) {
-                this.sessionStore.destroy(signature.sign(cookieKey, apiOptions.cookieSecret))
+                // 为了支持平滑刷新，原数据保持 3s 后再清除
+                setTimeout(()=>{
+                    this.sessionStore.destroy(signature.sign(cookieKey, apiOptions.cookieSecret))
+                }, 30000)
             }
             
             // Avoid error: Cannot set headers after they are sent to the client

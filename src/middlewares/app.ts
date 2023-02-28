@@ -34,15 +34,15 @@ export const middleware = (options?: Options) => async ( ctx: ParameterizedConte
             const parsedUrl = parse(req.url!, true);
             await ctx.state.handle(req, res, parsedUrl);
         } else {
-            const matchWhitelistUrl = whitelist?.length > 0 ? match(whitelist, { decode: decodeURIComponent }) : undefined;
-            if(matchWhitelistUrl && !matchWhitelistUrl(ctx.path) && !ctx.cookies.get(cookie)) {
-                // 路由白名单，静态资源永久可以可访问
-                redirectRoute && ctx.res.writeHead(302, { "Location": redirectRoute })
-                ctx.res.end();
+            if(/^\/api\/.*/.test(ctx.path)) {
+                // api路由
+                await compose(apiMiddlewares)(ctx, next)
             } else {
-                if(/^\/api\/.*/.test(ctx.path)) {
-                    // api路由
-                    await compose(apiMiddlewares)(ctx, next)
+                const matchWhitelistUrl = whitelist?.length > 0 ? match(whitelist, { decode: decodeURIComponent }) : undefined;
+                if(matchWhitelistUrl && !matchWhitelistUrl(ctx.path) && !ctx.cookies.get(cookie)) {
+                    // 页面路由白名单
+                    redirectRoute && ctx.res.writeHead(302, { "Location": redirectRoute })
+                    ctx.res.end();
                 } else {
                     // 页面路由
                     await compose(pageMiddlewares)(ctx, next)
