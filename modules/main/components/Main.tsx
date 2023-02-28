@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 export interface Props {
+  // eslint-disable-next-line
   Component: React.ComponentType<any>; // router component
   pageProps: object; // router component props
 }

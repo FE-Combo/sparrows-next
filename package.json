@@ -16,7 +16,7 @@
     "build:lib": "rm -rf ./dist && tsc --project tsconfig.build.json",
     "dep": "sh ./dep/redis.sh && sh ./dep/jaeger.sh",
     "type-check": "tsc --pretty",
-    "eslint": "eslint . --fix",
+    "eslint": "eslint --ext .tsx,.ts . --fix",
     "prettier": "prettier --write .",
     "release": "standard-version",
     "release:beta": "standard-version --prerelease beta",

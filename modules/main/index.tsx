@@ -5,6 +5,7 @@ import { start, Model, PageContext } from "reaux-next";
 import BaseApp from "next/app";
 import { State } from "./type";
 
+// eslint-disable-next-line
 export interface NextAppProps<T = any> {
   Component: React.ComponentType<T>; // router component
   pageProps: object; // router component props

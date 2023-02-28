@@ -30,6 +30,7 @@ interface ApiConfig {
   sessionOptions: KoaRedis["sessionOptions"];
   apiOptions?: ApiOpitons;
   proxyOptions?: ProxyOptons;
+  // eslint-disable-next-line
   [other: string]: any;
 }
 

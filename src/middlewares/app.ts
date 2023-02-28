@@ -19,7 +19,9 @@ export interface Options {
   baseRoute?: string;
   staticlist?: (string | RegExp)[];
   cookie?: string;
+  // eslint-disable-next-line
   apiMiddlewares?: Middleware<any, any>[];
+  // eslint-disable-next-line
   pageMiddlewares?: Middleware<any, any>[];
 }
 

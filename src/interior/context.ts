@@ -12,10 +12,12 @@ export async function getConfig() {
 
 export interface CTXState {
   handle: RequestHandler;
+  // eslint-disable-next-line
   config: Record<string, any>;
 }
 
 const context =
+  // eslint-disable-next-line
   (handle: RequestHandler, config: Record<string, any>) =>
   async (ctx: ParameterizedContext<CTXState, DefaultContext>, next: Next) => {
     ctx.res.statusCode = 200;
