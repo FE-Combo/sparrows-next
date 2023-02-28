@@ -1,1 +1,1 @@
-declare module 'koa-onerror';
+declare module "koa-onerror";

@@ -1,12 +1,11 @@
-import { Html, Head, Main, NextScript } from 'next/document';
-import React from 'react';
-
+import { Html, Head, Main, NextScript } from "next/document";
+import React from "react";
 
 export default function Document() {
   return (
     <Html>
-      <Head >
-      <meta charSet="utf-8" />
+      <Head>
+        <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />

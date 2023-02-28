@@ -7,5 +7,15 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": "error"
   },
-  "ignorePatterns": ["node_modules/*", "public/*", "dep/*", "global.d.ts", "dist/*", ".next/*", "tsc-demo/*", "koa.config.js", "next.config.js"]
+  "ignorePatterns": [
+    "node_modules/*",
+    "public/*",
+    "dep/*",
+    "global.d.ts",
+    "dist/*",
+    ".next/*",
+    "tsc-demo/*",
+    "koa.config.js",
+    "next.config.js"
+  ]
 }

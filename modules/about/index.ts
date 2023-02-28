@@ -3,7 +3,7 @@ import { register, Model } from "reaux-next";
 import { State } from "./type";
 
 const initialState: State = {
-  name: "about"
+  name: "about",
 };
 
 class ActionHandler extends Model<State> {

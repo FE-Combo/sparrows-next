@@ -1,23 +1,27 @@
-const withPlugins = require('next-compose-plugins/lib')
-const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
+const withPlugins = require("next-compose-plugins/lib");
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
 
-module.exports = withPlugins([
-    [withPWA, {
+module.exports = withPlugins(
+  [
+    [
+      withPWA,
+      {
         pwa: {
-            dest: 'public',
-            runtimeCaching,
-            disable: process.env.NODE_ENV !== 'production'
-        }
-    }]
-], {
+          dest: "public",
+          runtimeCaching,
+          disable: process.env.NODE_ENV !== "production",
+        },
+      },
+    ],
+  ],
+  {
     publicRuntimeConfig: {},
-    webpack:(config) => {
-        return config;
-    }
-})
-
-
+    webpack: (config) => {
+      return config;
+    },
+  }
+);
 
 // 京东微应用 => 子应用配置
 // const isProduction = process.env.NODE_ENV === 'production'
