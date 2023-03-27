@@ -21,7 +21,8 @@
   - redirectRoute：重定向地址
   - cookie：cookie key，指定 key 不存在时重定向 redirectRoute 地址，添加白名单 whitelist 可绕过检测
   - staticlist：静态资源路由列表，内置路由有 `["/_next/static/(.*)", "/_next/webpack-hmr", "/__nextjs_original-stack-frame", "/manifest.json", "/favicon.ico"]`
-  - apiMiddlewares：api 路由中间件
+  - apiMiddlewares：api 路由中间件，路由以`/api/`开头
+  - innerApiMiddlewares： 内置 api 路由中间件，路由以`/_api/`开头
   - pageMiddlewares：页面路由中间件
 - router：即将废弃
 

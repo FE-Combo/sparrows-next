@@ -22,6 +22,8 @@ export interface Options {
   // eslint-disable-next-line
   apiMiddlewares?: Middleware<any, any>[];
   // eslint-disable-next-line
+  innerApiMiddlewares?: Middleware<any, any>[];
+  // eslint-disable-next-line
   pageMiddlewares?: Middleware<any, any>[];
 }
 
@@ -38,6 +40,7 @@ export const middleware =
       staticlist = [],
       cookie = "s-sid",
       apiMiddlewares = [],
+      innerApiMiddlewares = [],
       pageMiddlewares = [],
     } = options || {};
     const nextStaticlist = staticlist.concat([
@@ -69,6 +72,9 @@ export const middleware =
         if (/^\/api\/.*/.test(ctx.path)) {
           // api路由
           await compose(apiMiddlewares)(ctx, next);
+        } else if (/^\/\_api\/.*/.test(ctx.path)) {
+          // 内置api路由
+          await compose(innerApiMiddlewares)(ctx, next);
         } else {
           const matchWhitelistUrl =
             whitelist?.length > 0
