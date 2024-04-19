@@ -16,14 +16,15 @@
 - \*context：存储 next、koa 实例、koa.config.js 配置获取
 
 - app：提供应用健康监测/页面路由/api 路由
-  - baseRoute：应用前缀
-  - whitelist：白名单
+  - baseRoute：应用前缀，也可以通过环境变量 BASE_ROUTE 配置。该配置对应应用中的 basePath
   - redirectRoute：重定向地址
-  - cookie：cookie key，指定 key 不存在时重定向 redirectRoute 地址，添加白名单 whitelist 可绕过检测
-  - staticlist：静态资源路由列表，内置路由有 `["/_next/static/(.*)", "/_next/webpack-hmr", "/__nextjs_original-stack-frame", "/manifest.json", "/favicon.ico"]`
+  - cookie：cookie key
+  - whitelist：无 cookie 时白名单列表。指定 cookie key 不存在且当前 path 不在 whitelist 中时则重定向至 redirectRoute 地址。可用于过滤无效页面请求（比如安全扫描）
+  - staticlist：静态资源路由列表，内置路由有 `["([baseRoute])?/_next/static/(.*)", "([baseRoute])?/_next/webpack-hmr", "([baseRoute])?/__nextjs_original-stack-frame", "([baseRoute])?/manifest.json", "/([baseRoute])?favicon.ico"]`
   - apiMiddlewares：api 路由中间件，路由以`/api/`开头
   - innerApiMiddlewares： 内置 api 路由中间件，路由以`/_api/`开头
   - pageMiddlewares：页面路由中间件
+  - 若项目中配置了 baseRoute，redirectRoute、whitelist 和 staticlist 需要手动添加 baseRoute，框架中不会自动添加。
 - router：即将废弃
 
 ## 使用
@@ -51,7 +52,6 @@
 - middlewares: 中间件列表, 支持自定义中间件满足 koa 标准即可
 - sentry: [sentry 接入参数](https://docs.sentry.io/platforms/node/)
 - errorOptions：处理 steam 和事件的异常，[配置参考](https://github.com/koajs/onerror#options)
-
 ## Q&A
 
 - Q: 为什么不直接使用[API Routes](https://nextjs.org/docs/api-routes/introduction)特性？
